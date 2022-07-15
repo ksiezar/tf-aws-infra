@@ -4,8 +4,8 @@ variable "aws_region" {
 }
 
 variable "vpc_security_group" {
-  type    = string
-  default = "sg-0359e36425359a42d"
+  type    = list(string)
+  default = ["sg-0359e36425359a42d"]
 }
 
 variable "vpc_id" {
