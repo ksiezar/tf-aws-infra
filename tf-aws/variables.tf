@@ -1,8 +1,3 @@
-variable "aws_region" {
-  type    = string
-  default = "us-east-1"
-}
-
 variable "vpc_security_group" {
   type    = list(string)
   default = ["sg-0359e36425359a42d"]
@@ -26,4 +21,9 @@ variable "ami_id" {
 variable "instance_type" {
   type    = string
   default = "t2.micro"
+}
+
+variable "vms_key" {
+  type    = string
+  default = "kat-pem"
 }

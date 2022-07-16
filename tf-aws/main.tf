@@ -1,14 +1,14 @@
 provider "aws" {
-  region = var.aws_region
+  region = "us-east-1"
 }
 
 resource "aws_instance" "windows_server" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
-  availability_zone      = var.aws_region
   vpc_security_group_ids = var.vpc_security_group
+  key_name               = var.vms_key
 
   tags = {
-    Name = "windows-main"
+    Name = "windows-01"
   }
 }
