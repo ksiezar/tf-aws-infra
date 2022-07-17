@@ -36,6 +36,7 @@ pipeline {
                   """
                   cd ${env.WORKDIR}/tf-aws-infra/
                   terraform plan -no-color
+                  terraform show tfplan > tfplan.txt
                   """  
                 )
             }
