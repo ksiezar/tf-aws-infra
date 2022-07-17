@@ -10,14 +10,14 @@ resource "aws_vpc" "main" {
 
 ###### Security Group ######
 
-# resource "aws_security_group" "launch-wizard-1" {
-#   name        = "launch-wizard-1"
-#   description = "Allow Application inbound traffic"
-#   vpc_id      = var.vpc_id
-#   tags = {
-#     Name = "launch-wizard-1"
-#   }
-# }
+resource "aws_security_group" "sg-instances" {
+  name        = "sg-instances"
+  description = "Allow Application inbound traffic"
+  vpc_id      = var.vpc_id
+  tags = {
+    Name = "sg-instances"
+  }
+}
 
 ###### Security Group Rules Ingress ######
 
@@ -27,7 +27,7 @@ resource "aws_security_group_rule" "app-web-ingress" {
   to_port           = 8081
   protocol          = "tcp"
   cidr_blocks       = [aws_vpc.main.cidr_block]
-  security_group_id = aws_security_group.launch-wizard-1.id
+  security_group_id = aws_security_group.sg-instances.id
 }
 
 resource "aws_security_group_rule" "http-web-ingress" {
@@ -36,7 +36,7 @@ resource "aws_security_group_rule" "http-web-ingress" {
   to_port           = 80
   protocol          = "tcp"
   cidr_blocks       = [aws_vpc.main.cidr_block]
-  security_group_id = aws_security_group.launch-wizard-1.id
+  security_group_id = aws_security_group.sg-instances.id
 }
 
 resource "aws_security_group_rule" "https-web-ingress" {
@@ -45,7 +45,7 @@ resource "aws_security_group_rule" "https-web-ingress" {
   to_port           = 443
   protocol          = "tcp"
   cidr_blocks       = [aws_vpc.main.cidr_block]
-  security_group_id = aws_security_group.launch-wizard-1.id
+  security_group_id = aws_security_group.sg-instances.id
 }
 
 resource "aws_security_group_rule" "ssh-ingress" {
@@ -54,7 +54,7 @@ resource "aws_security_group_rule" "ssh-ingress" {
   to_port           = 22
   protocol          = "tcp"
   cidr_blocks       = [aws_vpc.main.cidr_block]
-  security_group_id = aws_security_group.launch-wizard-1.id
+  security_group_id = aws_security_group.sg-instances.id
 }
 
 resource "aws_security_group_rule" "application-ingress" {
@@ -63,7 +63,7 @@ resource "aws_security_group_rule" "application-ingress" {
   to_port           = 3000
   protocol          = "tcp"
   cidr_blocks       = [aws_vpc.main.cidr_block]
-  security_group_id = aws_security_group.launch-wizard-1.id
+  security_group_id = aws_security_group.sg-instances.id
 }
 
 ###### Security Group Rules Outbound ######
@@ -74,7 +74,7 @@ resource "aws_security_group_rule" "app-outbound" {
   to_port           = 0
   protocol          = "All"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.launch-wizard-1.id
+  security_group_id = aws_security_group.sg-instances.id
 }
 
 ###### EC2 Instances ######
@@ -83,7 +83,7 @@ resource "aws_instance" "rhel_server" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
   key_name               = var.vms_key
-  security_groups        = [aws_security_group.launch-wizard-1.name]
+  security_groups        = [aws_security_group.sg-instances.name]
   tags = {
     Name = "slave-01"
   }
