@@ -22,7 +22,7 @@ pipeline {
                 sh(
                   """
                   cd ${env.WORKDIR}/tf-aws-infra/
-                  terraform fmt
+                  terraform validate
                   """  
                 ) 
             }
