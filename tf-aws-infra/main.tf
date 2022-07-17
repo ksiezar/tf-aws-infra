@@ -2,6 +2,12 @@ provider "aws" {
   region = "us-east-1"
 }
 
+###### VPC ID ######
+
+resource "aws_vpc" "main" {
+  cidr_block = "172.31.0.0/16"
+}
+
 ###### Security Group ######
 
 resource "aws_security_group" "sg_instances" {
