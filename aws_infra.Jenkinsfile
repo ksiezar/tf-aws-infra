@@ -7,19 +7,24 @@ pipeline {
        terraform 'terraform'
     }
     stages {
-        stage('terraform format check') {
+        stage('Terraform Init') {
             steps{
                 sh(
                   """
                   cd ${env.WORKDIR}/tf-aws-infra/
-                  ls -la
+                  terraform init
                   """  
                 ) 
             }
         }
-        stage('terraform Init') {
+        stage('terraform Validate') {
             steps{
-                sh 'ls -la'
+                sh(
+                  """
+                  cd ${env.WORKDIR}/tf-aws-infra/
+                  terraform fmt
+                  """  
+                ) 
             }
         }
         // stage('terraform apply') {
