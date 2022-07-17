@@ -8,14 +8,9 @@ variable "vpc_id" {
   default = "vpc-03a30cf3ae0d09353"
 }
 
-variable "vpc_cidr_block" {
-  type    = string
-  default = "172.31.0.0/16"
-}
-
 variable "ami_id" {
   type    = string
-  default = "ami-041306c411c38a789"
+  default = "ami-06640050dc3f556bb"
 }
 
 variable "instance_type" {
