@@ -10,14 +10,14 @@ resource "aws_vpc" "main" {
 
 ###### Security Group ######
 
-resource "aws_security_group" "launch-wizard-1" {
-  name        = "launch-wizard-1"
-  description = "Allow Application inbound traffic"
-  vpc_id      = var.vpc_id
-  tags = {
-    Name = "launch-wizard-1"
-  }
-}
+# resource "aws_security_group" "launch-wizard-1" {
+#   name        = "launch-wizard-1"
+#   description = "Allow Application inbound traffic"
+#   vpc_id      = var.vpc_id
+#   tags = {
+#     Name = "launch-wizard-1"
+#   }
+# }
 
 ###### Security Group Rules Ingress ######
 
