@@ -8,6 +8,7 @@ pipeline {
             steps{
                 sh(
                   """
+                  ${env.WORKDIR}
                   pwd
                   ls -la
                   """  
