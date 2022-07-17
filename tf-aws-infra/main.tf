@@ -21,7 +21,7 @@ resource "aws_security_group_rule" "app-web-ingress" {
   to_port           = 8081
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.sg_instances.id
+  security_group_id = aws_security_group.sg_instance_vms.id
 }
 
 resource "aws_security_group_rule" "http-web-ingress" {
@@ -30,7 +30,7 @@ resource "aws_security_group_rule" "http-web-ingress" {
   to_port           = 80
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.sg_instances.id
+  security_group_id = aws_security_group.sg_instance_vms.id
 }
 
 resource "aws_security_group_rule" "https-web-ingress" {
@@ -39,7 +39,7 @@ resource "aws_security_group_rule" "https-web-ingress" {
   to_port           = 443
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.sg_instances.id
+  security_group_id = aws_security_group.sg_instance_vms.id
 }
 
 resource "aws_security_group_rule" "ssh-ingress" {
@@ -48,7 +48,7 @@ resource "aws_security_group_rule" "ssh-ingress" {
   to_port           = 22
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.sg_instances.id
+  security_group_id = aws_security_group.sg_instance_vms.id
 }
 
 ###### Security Group Rules Outbound ######
@@ -59,7 +59,7 @@ resource "aws_security_group_rule" "app-outbound" {
   to_port           = 0
   protocol          = "All"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.sg_instances.id
+  security_group_id = aws_security_group.sg_instance_vms.id
 }
 
 ###### EC2 Instances ######
@@ -68,7 +68,7 @@ resource "aws_instance" "rhel_server02" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
   key_name               = var.vms_key
-  security_groups        = [aws_security_group.sg_instances.name]
+  security_groups        = [aws_security_group.sg_instance_vms.name]
   tags = {
     Name = "slave-02"
   }
