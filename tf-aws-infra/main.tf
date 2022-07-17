@@ -10,12 +10,12 @@ resource "aws_vpc" "main" {
 
 ###### Security Group ######
 
-resource "aws_security_group" "sg-instances" {
-  name        = "sg-instances"
+resource "aws_security_group" "sg_instances" {
+  name        = "sg_instances"
   description = "Allow Application inbound traffic"
   vpc_id      = var.vpc_id
   tags = {
-    Name = "sg-instances"
+    Name = "sg_instances"
   }
 }
 
