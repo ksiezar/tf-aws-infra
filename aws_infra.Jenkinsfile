@@ -8,7 +8,7 @@ pipeline {
             steps{
                 sh(
                   """
-                  cd ${env.WORKDIR}
+                  pwd
                   ls -la
                   """  
                 ) 
@@ -16,7 +16,7 @@ pipeline {
         }
         stage('terraform Init') {
             steps{
-                sh 'terraform init'
+                sh 'ls -la'
             }
         }
         // stage('terraform apply') {
