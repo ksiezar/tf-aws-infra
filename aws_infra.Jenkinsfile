@@ -40,12 +40,12 @@ pipeline {
                 )
             }
         }
-        stage('Terraform apply') {
+        stage('Terraform Apply') {
             steps{
                 sh(
                   """
                   cd ${env.WORKDIR}/tf-aws-infra/
-                  terraform apply --auto-approve tfplan
+                  terraform apply -no-color --auto-approve tfplan
                   """  
                 )
             }
