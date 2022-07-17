@@ -14,7 +14,7 @@ pipeline {
                 sh(
                   """
                   cd ${env.WORKDIR}/tf-aws-infra/
-                  terraform init
+                  terraform init -no-color
                   """  
                 ) 
             }
@@ -24,8 +24,8 @@ pipeline {
                 sh(
                   """
                   cd ${env.WORKDIR}/tf-aws-infra/
-                  terraform fmt
-                  terraform validate
+                  terraform fmt -no-color
+                  terraform validate -no-color
                   """  
                 ) 
             }
@@ -35,7 +35,7 @@ pipeline {
                 sh(
                   """
                   cd ${env.WORKDIR}/tf-aws-infra/
-                  terraform plan
+                  terraform plan -no-color
                   """  
                 )
             }
