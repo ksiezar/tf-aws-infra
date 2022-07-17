@@ -2,6 +2,8 @@ pipeline {
     agent {label 'rhel-node-slave01'}
     environment {
         WORKDIR = "${WORKSPACE}"
+        AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
     }
     tools {
        terraform 'terraform'
