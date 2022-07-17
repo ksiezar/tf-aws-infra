@@ -36,20 +36,19 @@ pipeline {
                   """
                   cd ${env.WORKDIR}/tf-aws-infra/
                   terraform plan -no-color -out tfplan
-                  terraform show -no-color tfplan >> tfplan.txt
                   """  
                 )
             }
         }
-        // stage('terraform apply') {
-        //     steps{
-        //         sh(
-        //           """
-        //           cd ${env.WORKDIR}/tf-aws-infra/
-        //           terraform apply --auto-approve
-        //           """  
-        //         )
-        //     }
-        // }
+        stage('Terraform apply') {
+            steps{
+                sh(
+                  """
+                  cd ${env.WORKDIR}/tf-aws-infra/
+                  terraform apply --auto-approve tfplan
+                  """  
+                )
+            }
+        }
     }    
 }
