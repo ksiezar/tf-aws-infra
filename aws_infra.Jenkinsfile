@@ -17,19 +17,35 @@ pipeline {
                 ) 
             }
         }
-        stage('terraform Validate') {
+        stage('Terraform Validate') {
             steps{
                 sh(
                   """
                   cd ${env.WORKDIR}/tf-aws-infra/
+                  terraform fmt
                   terraform validate
                   """  
                 ) 
             }
         }
+        stage('Terraform Plan') {
+            steps{
+                sh(
+                  """
+                  cd ${env.WORKDIR}/tf-aws-infra/
+                  terraform plan
+                  """  
+                )
+            }
+        }
         // stage('terraform apply') {
         //     steps{
-        //         sh 'terraform apply --auto-approve'
+        //         sh(
+        //           """
+        //           cd ${env.WORKDIR}/tf-aws-infra/
+        //           terraform apply --auto-approve
+        //           """  
+        //         )
         //     }
         // }
     }    

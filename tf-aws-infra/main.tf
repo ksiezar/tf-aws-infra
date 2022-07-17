@@ -93,7 +93,7 @@ resource "aws_instance" "rhel_server02" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
   key_name               = var.vms_key
-  security_groups        = [aws_security_group.zabbix.name]
+  security_groups        = [aws_security_group.sg_instances.name]
   tags = {
     Name = "slave-02"
   }
