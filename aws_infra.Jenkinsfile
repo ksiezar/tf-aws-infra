@@ -1,5 +1,8 @@
 pipeline {
     agent {label 'rhel-node-slave01'}
+    environment {
+        WORKDIR = "${WORKSPACE}"
+    }
     tools {
        terraform 'terraform'
     }
@@ -8,8 +11,7 @@ pipeline {
             steps{
                 sh(
                   """
-                  ${env.WORKDIR}
-                  pwd
+                  cd ${env.WORKDIR}/tf-aws-infra/
                   ls -la
                   """  
                 ) 
