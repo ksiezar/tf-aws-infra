@@ -51,6 +51,15 @@ resource "aws_security_group_rule" "ssh-ingress" {
   security_group_id = aws_security_group.sg_instance_vms.id
 }
 
+resource "aws_security_group_rule" "app-timeoff-ingress" {
+  type              = "ingress"
+  from_port         = 3000
+  to_port           = 3000
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.sg_instance_vms.id
+}
+
 ###### Security Group Rules Outbound ######
 
 resource "aws_security_group_rule" "app-outbound" {
